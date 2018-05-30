@@ -34,6 +34,7 @@
                             <a ng-repeat="like in media.likes.data" class="label label-success" style="margin: 5px;" ng-href="#user/{{like.id}}/{{like.username}}">
                                 {{like.username}}
                             </a>
+							<span class="glyphicon glyphicon-pencil pull-right"> {{image.comments.count}}</span>
 
                         </div>
                     </div>

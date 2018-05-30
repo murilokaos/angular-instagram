@@ -48,20 +48,21 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.userSelfFeed = function(callback, nextMaxId){
 
-        endPoint = apiUrl + "users/self/feed?"+ instagram.getAuth() + callbackString;
+        endPoint = apiUrl + "users/self/media/recent/?"+ instagram.getAuth() + callbackString;
 
         if(nextMaxId != null) {
-            endPoint = apiUrl + "users/self/feed?" + instagram.getAuth() + "&max_id=" + nextMaxId + callbackString;
+            endPoint = apiUrl + "users/self/media/recent/?" + instagram.getAuth() + "&max_id=" + nextMaxId + callbackString;
         }
 
         $http.jsonp(endPoint).success(function (response) {
             callback(response);
         });
 
-    };
+    }; 
+/* */
 
     instagram.getRecentMedia = function (userId, callback, nextIterator) {
 
@@ -76,7 +77,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.searchUser = function (username, callback) {
 
         endPoint = apiUrl + "users/search?q=" + username + "&" + instagram.getAuth() + callbackString;
@@ -86,7 +87,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.getUserLiked = function(callback){
 
         endPoint = apiUrl + "users/self/media/liked?" + instagram.getAuth() + callbackString;
@@ -114,7 +115,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     //relationships
     instagram.getFollows = function(userId, callback, nextIterator){
 
@@ -131,7 +132,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.getFollowedBy = function(userId, callback, nextIterator){
 
         if(userId == null) {userId = "self";}
@@ -147,7 +148,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.getRequestedBy = function(callback){
 
         endPoint = apiUrl + "users/self/requested-by?" + instagram.getAuth() + callbackString;
@@ -157,7 +158,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.relationship = function(userId, action, callback){
 
         if(action == "relationship"){
@@ -181,7 +182,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         }
 
     };
-
+/* Deprecated */
     //media
     instagram.fetchPopular = function (callback) {
 
@@ -192,7 +193,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.getMedia = function (mediaId, callback) {
 
         endPoint = apiUrl + "media/" + mediaId + "?" + instagram.getAuth() + callbackString;
@@ -224,7 +225,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     //comments
     instagram.getComments = function(mediaId, callback) {
 
@@ -235,7 +236,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     //likes
     instagram.getLikes = function(mediaId, callback){
 
@@ -246,7 +247,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
         });
 
     };
-
+/* Deprecated */
     instagram.giveLike = function(mediaId){
 
         $http({

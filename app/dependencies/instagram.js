@@ -24,7 +24,7 @@ angular.module('instagramService', []).factory('instagramApi', function ($http) 
     };
 
     instagram.getAuthLink = function () {
-        return "https://instagram.com/oauth/authorize/?client_id=" + clientId + "&redirect_uri=" + callback + "&response_type=token&scope=likes+relationships";
+        return "https://instagram.com/oauth/authorize/?client_id=" + clientId + "&redirect_uri=" + callback + "&response_type=token&scope=likes+comments";
     };
 
 

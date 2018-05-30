@@ -1,6 +1,6 @@
 app.config(function(AnalyticsProvider) {
     // Set analytics account
-    AnalyticsProvider.setAccount('UA-68965405-1');
+    AnalyticsProvider.setAccount('');
 
     // Track all routes (or not)
     AnalyticsProvider.trackPages(true);

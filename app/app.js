@@ -3,7 +3,7 @@ var app = angular.module('instagramApp', ['instagramApp.controllers', 'instagram
 
 app.constant('instagramApiConfig', {
         apiUrl: 'https://api.instagram.com/v1/',
-        clientId: '48252118e7924df8be40fb498d0a87c8',
+        clientId: 'e3b3f07d66e04b3b9c13c5ac53857917',
         callback: 'http://ozdemirr.github.io/angular-instagram/callback.html'
     }
 );

@@ -36,22 +36,6 @@
                             </a>
 
                         </div>
-
-                        <div class="actionBox">
-                    <ul class="commentList">
-                        <li ng-repeat="comment in media.comments.data">
-                            <div class="commenterImage">
-                                <img ng-src="{{comment.from.profile_picture}}" />
-
-                            </div>
-                            <div class="commentText">
-                                <a ng-href="#/user/{{comment.from.id}}/{{comment.from.username}}" class="label label-info">{{comment.from.username}}</a>
-                                <p class="">{{comment.text}}</p> <span class="date sub-text">{{comment.created_time * 1000 | date:'MMM d, y HH:mm:ss'}}</span>
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                     </div>
 
                 </div>

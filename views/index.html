@@ -1,11 +1,11 @@
 <div ng-controller="IndexController">
 
-    <div class="row" ng-controller="userController" ng-init="getUserProfile()">
+    <div class="row" ng-controller="userController" ng-init="getUserProfile()" ng-show="isLoggedIn()">
 
     <div class="col-md-2">
 
         <div id="sidebar-wrapper">
-            <div collapse="isCollapsed" ng-show="userRequests">
+            <div collapse="isCollapsed" ng-show="user">
                 <div class="well well-sm">
                     <img ng-src="{{user.profile_picture}}">
                     <span class="label label-primary">{{user.full_name}}</span>
@@ -16,7 +16,7 @@
 
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    {{userName}}
+                    {{user.userName}}
                 </li>
                 <li ng-show="user">
                     <a ng-click="getFollowedBy();">Followers <span class="badge inline">{{user.counts.followed_by}}</span></a>

@@ -101,7 +101,7 @@ var indexController = instagramAppControllers.controller('IndexController', func
 
             $scope.serviceMeta = response.meta;
 
-            $scope.feed = $scope.feed.concat(response.data);
+            $scope.feed = $scope.userController.concat(response.data);
 
             $scope.nextIterator = response.pagination.next_max_id;
 
@@ -300,7 +300,7 @@ var userController = instagramAppControllers.controller('userController', functi
         }, nextIterator);
 
     };
-
+// Deprecated
     $scope.relationship = function(userId, action){
 
         instagramApi.relationship(userId, action);

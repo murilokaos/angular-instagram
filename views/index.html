@@ -2,48 +2,28 @@
 
     <div class="timeline" ng-show="isLoggedIn()" ng-init="isLoggedIn() ? refreshFeed() : null">
 
-        <div class="row container-fluid">
+         <div class="col-md-10" ng-show="isLayout('getRecentMedia')">
 
-            <div class="row text-center margin-bottom-50" ng-repeat="media in feed">
+            <div class="col-md-3" ng-repeat="image in images | unique:'id'">
 
-                <!--Image-->
-                <div class="col-md-7">
+                <div class="thumbnail">
 
-                    <a ng-href="#media/{{media.id}}/{{media.type}}"><img ng-src="{{media.images.standard_resolution.url}}"></a>
+                    <a class="thumbnail" ng-href="#media/{{image.id}}/{{image.type}}"
+                       ga-track-event="['Media', image.id]">
+                        <img ng-src="{{image.images.thumbnail.url}}">
+                    </a>
 
-                </div>
-
-                <!--Comment and General Info Box-->
-                <div class="col-md-5">
-
-                    <div class="detailBox">
-                        <div class="titleBox">
-                            <a ng-href="#/user/{{media.user.id}}/{{media.user.username}}"> <label style="cursor: pointer;">{{media.user.username}}</label> </a>
-
-                        </div>
-                        <div class="commentBox">
-                            <p class="taskDescription" ng-if="media.created_time">{{media.created_time * 1000 | date:'MMM d, y HH:mm:ss'}}</p>
-                            <p class="taskDescription">{{media.caption.text}}</p>
-                            <p class="taskDescription">Filter : {{media.filter}}</p>
-                            <a class="btn btn-primary" ng-href="{{media.images.standard_resolution.url}}" download>Download</a>
-                        </div>
-
-                        <div class="likesBox">
-                            <span class="badge">{{media.likes.count}}</span>
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                            <a ng-repeat="like in media.likes.data" class="label label-success" style="margin: 5px;" ng-href="#user/{{like.id}}/{{like.username}}">
-                                {{like.username}}
-                            </a>
-							<span class="glyphicon glyphicon-pencil"> {{media.comments.count}}</span>
-
-                        </div>
+                    <div class="caption">
+                        <p class="text-center">{{image.created_time * 1000 | date:'MMM d, y HH:mm:ss'}}</p>
+                        <span class="glyphicon glyphicon-thumbs-up"> {{image.likes.count}}</span>
+                        <span class="glyphicon glyphicon-pencil pull-right"> {{image.comments.count}}</span>
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
+    </div>
 
 
         <load-more />

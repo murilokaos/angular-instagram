@@ -2,8 +2,6 @@
 
     <div class="timeline" ng-show="isLoggedIn()" ng-init="isLoggedIn() ? refreshFeed() : null">
 
-        <div class="row container-fluid">
-
             <div class="row text-center margin-bottom-50" ng-repeat="media in feed">
 
                 <div class="col-md-10" ng-show="isLayout('getRecentMedia')">
@@ -65,9 +63,6 @@
         </div>
 
     </div>
-
-        </div>
-
 
         <load-more />
 

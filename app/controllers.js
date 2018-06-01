@@ -89,7 +89,7 @@ var navController = instagramAppControllers.controller('navController', function
 });
 
 
-var indexController = instagramAppControllers.controller('IndexController', function ($scope, instagramApi) {
+var indexController = instagramAppControllers.controller('IndexController', function ($scope, instagramApi, $stateParams) {
 
     $scope.serviceMeta = {};
 

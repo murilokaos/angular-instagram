@@ -137,58 +137,6 @@ var loginController = instagramAppControllers.controller('loginController', func
 
 });
 
-
-var popularController = instagramAppControllers.controller('popularController', function ($scope, instagramApi) {
-
-    $scope.layout = 'grid';
-
-    $scope.setLayout = function (layout) {
-        $scope.layout = layout;
-    };
-
-    $scope.isLayout = function (layout) {
-        return $scope.layout == layout;
-    };
-
-    $scope.popularImages = [];
-
-    $scope.serviceMeta = {};
-
-    $scope.refresh = function () {
-
-        instagramApi.fetchPopular(function (response) {
-
-            $scope.serviceMeta = response.meta;
-
-            $scope.popularImages = response.data;
-
-        });
-    };
-
-});
-
-var UserSearchController = instagramAppControllers.controller('UserSearchController', function ($scope, instagramApi,Analytics) {
-
-    $scope.users = [];
-
-    $scope.serviceMeta = {};
-
-    $scope.search = function () {
-
-        instagramApi.searchUser($scope.username, function (response) {
-
-            Analytics.trackEvent('UserSearch', $scope.username);
-
-            $scope.serviceMeta = response.meta;
-
-            $scope.users = response.data;
-
-        });
-
-    }
-
-});
-
 var userController = instagramAppControllers.controller('userController', function ($scope, instagramApi, $stateParams) {
 
     $scope.setLayout = function (layout) {
@@ -300,7 +248,7 @@ var userController = instagramAppControllers.controller('userController', functi
         }, nextIterator);
 
     };
-
+// Deprecated
     $scope.relationship = function(userId, action){
 
         instagramApi.relationship(userId, action);

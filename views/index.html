@@ -30,6 +30,41 @@
 				</div>
 
             </div>
+			
+			<div class="col-md-10" ng-show="!isLayout('getRecentMedia')">
+
+        <div class="row container-fluid">
+
+            <ul class="list" class="col-md-12" ng-show="isLayout('getFollows')">
+
+                <li ng-repeat="f in follows | unique:'id'">
+
+                    <div class="pull-left">
+                    <a ng-href="#user/{{f.id}}/{{f.username}}"><img ng-src="{{f.profile_picture}}"/></a>
+                    <p>{{f.full_name}}</p>
+                    <p>{{f.bio}}</p>
+                    </div>
+                </li>
+
+            </ul>
+
+            <ul class="list" class="col-md-12" ng-show="isLayout('getFollowedBy')">
+
+                <li ng-repeat="f in followedBy | unique:'id'">
+
+                    <div class="pull-left">
+                    <a ng-href="#user/{{f.id}}/{{f.username}}"><img ng-src="{{f.profile_picture}}"/></a>
+                    <p>{{f.full_name}}</p>
+                    <p>{{f.bio}}</p>
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
 
         </div>
 

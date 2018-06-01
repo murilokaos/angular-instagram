@@ -1,101 +1,54 @@
 <div ng-controller="IndexController">
 
-    <div class="row" ng-controller="userController" ng-init="getUserProfile()" ng-show="isLoggedIn()">
-
-    <div class="col-md-2">
-
-        <div id="sidebar-wrapper">
-            <div collapse="isCollapsed" ng-show="user">
-                <div class="well well-sm">
-                    <img ng-src="{{user.profile_picture}}">
-                    <span class="label label-primary">{{user.full_name}}</span>
-
-                    <p>{{user.bio}}</p>
-                </div>
-            </div>
-
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    {{user.userName}}
-                </li>
-                <li ng-show="user">
-                    <a ng-click="getFollowedBy();">Followers <span class="badge inline">{{user.counts.followed_by}}</span></a>
-                </li>
-                <li ng-show="user">
-                    <a ng-click="getFollows();">Following <span class="badge inline">{{user.counts.follows}}</span></a>
-                </li>
-                <li ng-show="user">
-                    <a ng-click="getRecentMedia();">Media <span class="badge inline">{{user.counts.media}}</span></a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-
-
-    <div class="col-md-10" ng-show="isLayout('getRecentMedia')">
-
-            <div class="col-md-3" ng-repeat="image in images | unique:'id'">
-
-                <div class="thumbnail">
-
-                    <a class="thumbnail" ng-href="#media/{{image.id}}/{{image.type}}"
-                       ga-track-event="['Media', image.id]">
-                        <img ng-src="{{image.images.thumbnail.url}}">
-                    </a>
-
-                    <div class="caption">
-                        <p class="text-center">{{image.created_time * 1000 | date:'MMM d, y HH:mm:ss'}}</p>
-                        <span class="glyphicon glyphicon-thumbs-up"> {{image.likes.count}}</span>
-                        <span class="glyphicon glyphicon-pencil pull-right"> {{image.comments.count}}</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-    </div>
-
-
-    <div class="col-md-10" ng-show="!isLayout('getRecentMedia')">
+    <div class="timeline" ng-show="isLoggedIn()" ng-init="isLoggedIn() ? refreshFeed() : null">
 
         <div class="row container-fluid">
 
-            <ul class="list" class="col-md-12" ng-show="isLayout('getFollows')">
+            <div class="row text-center margin-bottom-50" ng-repeat="media in feed">
 
-                <li ng-repeat="f in follows | unique:'id'">
+                <!--Image-->
+                <div class="col-md-7">
 
-                    <div class="pull-left">
-                    <a ng-href="#user/{{f.id}}/{{f.username}}"><img ng-src="{{f.profile_picture}}"/></a>
-                    <p>{{f.full_name}}</p>
-                    <p>{{f.bio}}</p>
+                    <a ng-href="#media/{{media.id}}/{{media.type}}"><img ng-src="{{media.images.standard_resolution.url}}"></a>
+
+                </div>
+
+                <!--Comment and General Info Box-->
+                <div class="col-md-5">
+
+                    <div class="detailBox">
+                        <div class="titleBox">
+                            <a ng-href="#/user/{{media.user.id}}/{{media.user.username}}"> <label style="cursor: pointer;">{{media.user.username}}</label> </a>
+
+                        </div>
+                        <div class="commentBox">
+                            <p class="taskDescription" ng-if="media.created_time">{{media.created_time * 1000 | date:'MMM d, y HH:mm:ss'}}</p>
+                            <p class="taskDescription">{{media.caption.text}}</p>
+                            <p class="taskDescription">Filter : {{media.filter}}</p>
+                            <a class="btn btn-primary" ng-href="{{media.images.standard_resolution.url}}" download>Download</a>
+                        </div>
+
+                        <div class="likesBox">
+                            <span class="badge">{{media.likes.count}}</span>
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                            <a ng-repeat="like in media.likes.data" class="label label-success" style="margin: 5px;" ng-href="#user/{{like.id}}/{{like.username}}">
+                                {{like.username}}
+                            </a>
+							<span class="glyphicon glyphicon-pencil"> {{media.comments.count}}</span>
+
+                        </div>
                     </div>
-                </li>
 
-            </ul>
+                </div>
 
-            <ul class="list" class="col-md-12" ng-show="isLayout('getFollowedBy')">
-
-                <li ng-repeat="f in followedBy | unique:'id'">
-
-                    <div class="pull-left">
-                    <a ng-href="#user/{{f.id}}/{{f.username}}"><img ng-src="{{f.profile_picture}}"/></a>
-                    <p>{{f.full_name}}</p>
-                    <p>{{f.bio}}</p>
-                    </div>
-
-                </li>
-
-            </ul>
+            </div>
 
         </div>
 
+
+        <load-more />
+
     </div>
-
-    <div error></div>
-    <div load-more></div>
-
-</div>
 
     <!--if user not logged in-->
     <div ng-show="!isLoggedIn()">

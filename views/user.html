@@ -64,9 +64,7 @@
                 <li ng-repeat="f in follows | unique:'id'">
 
                     <div class="pull-left">
-                    <a ng-href="#user/{{f.id}}/{{f.username}}"><img ng-src="{{f.profile_picture}}"/></a>
-                    <p>{{f.full_name}}</p>
-                    <p>{{f.bio}}</p>
+                    <a ng-href="#user/{{f.id}}/{{f.username}}"></a>
                     </div>
                 </li>
 
@@ -77,9 +75,7 @@
                 <li ng-repeat="f in followedBy | unique:'id'">
 
                     <div class="pull-left">
-                    <a ng-href="#user/{{f.id}}/{{f.username}}"><img ng-src="{{f.profile_picture}}"/></a>
-                    <p>{{f.full_name}}</p>
-                    <p>{{f.bio}}</p>
+                    <a ng-href="#user/{{f.id}}/{{f.username}}"></a>
                     </div>
 
                 </li>

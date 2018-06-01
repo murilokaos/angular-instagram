@@ -30,13 +30,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             controller: "userController"
         })
 
-        .state('searchUser', {
-            url: "/searchUser",
-            templateUrl: "views/searchUser.html",
-            data: {pageTitle: 'Search User', pageSubTitle: ''},
-            controller: "UserSearchController"
-        })
-
         .state('searchTag', {
             url: "/searchTag",
             templateUrl: "views/searchTag.html",
@@ -56,13 +49,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             templateUrl: "views/tag.html",
             data: {pageTitle: 'Tag', pageSubTitle: ''},
             controller: "tagController"
-        })
-
-        .state('popular', {
-            url: "/popular",
-            templateUrl: "views/popular.html",
-            data: {pageTitle: 'Popular Images', pageSubTitle: ''},
-            controller: "popularController"
         })
 
         .state("media", {

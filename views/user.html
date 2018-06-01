@@ -10,15 +10,6 @@
 
                     <p>{{user.bio}}</p>
                 </div>
-
-                <div class="btn-group" role="group" ng-if="!isOwn(user.id) && isLoggedIn()">
-
-                    <button type="button" class="btn btn-danger" ng-click="relationship(user.id, 'unfollow');relationshipData.following = false" ng-if="relationshipData.following">UnFollow</button>
-
-                    <button type="button" class="btn btn-primary" ng-click="relationship(user.id, 'follow');relationshipData.following = true" ng-if="!relationshipData.following">Follow</button>
-
-                </div>
-
             </div>
 
             <ul class="sidebar-nav">
@@ -48,7 +39,7 @@
 
                     <a class="thumbnail" ng-href="#media/{{image.id}}/{{image.type}}"
                        ga-track-event="['Media', image.id]">
-                        <img ng-src="{{image.images.low_resolution.url}}">
+                        <img ng-src="{{image.images.thumbnail.url}}">
                     </a>
 
                     <div class="caption">
@@ -77,15 +68,6 @@
                     <p>{{f.full_name}}</p>
                     <p>{{f.bio}}</p>
                     </div>
-
-                    <div class="btn-group pull-right" role="group" ng-if="isOwn(user.id)">
-
-                        <button type="button" class="btn btn-danger" ng-click="relationship(f.id, 'unfollow');f.unFollowShow=true;f.toBeFollowing=true" ng-if="!f.unFollowShow">UnFollow</button>
-
-                        <button type="button" class="btn btn-primary" ng-click="relationship(f.id, 'follow');f.unFollowShow=false;f.toBeFollowing=false" ng-if="f.toBeFollowing">Follow</button>
-
-                    </div>
-
                 </li>
 
             </ul>

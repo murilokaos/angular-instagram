@@ -1,35 +1,63 @@
 <div ng-controller="IndexController">
 
-    <div class="timeline" ng-show="isLoggedIn()" ng-init="isLoggedIn() ? refreshFeed() : null">
+    <div class="row" ng-controller="userController" ng-init="getUserProfile()">
 
-            <div class="row text-center margin-bottom-50" ng-repeat="media in feed">
+    <div class="col-md-2">
 
-                <div class="col-md-10" ng-show="isLayout('getRecentMedia')">
+        <div id="sidebar-wrapper">
+            <div collapse="isCollapsed" ng-show="user">
+                <div class="well well-sm">
+                    <img ng-src="{{user.profile_picture}}">
+                    <span class="label label-primary">{{user.full_name}}</span>
 
-					<div class="col-md-3" ng-repeat="image in images | unique:'id'">
+                    <p>{{user.bio}}</p>
+                </div>
+            </div>
 
-						<div class="thumbnail">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    {{userName}}
+                </li>
+                <li ng-show="user">
+                    <a ng-click="getFollowedBy();">Followers <span class="badge inline">{{user.counts.followed_by}}</span></a>
+                </li>
+                <li ng-show="user">
+                    <a ng-click="getFollows();">Following <span class="badge inline">{{user.counts.follows}}</span></a>
+                </li>
+                <li ng-show="user">
+                    <a ng-click="getRecentMedia();">Media <span class="badge inline">{{user.counts.media}}</span></a>
+                </li>
+            </ul>
+        </div>
 
-							<a class="thumbnail" ng-href="#media/{{image.id}}/{{image.type}}"
-							   ga-track-event="['Media', image.id]">
-								<img ng-src="{{image.images.thumbnail.url}}">
-							</a>
+    </div>
 
-							<div class="caption">
-								<p class="text-center">{{image.created_time * 1000 | date:'MMM d, y HH:mm:ss'}}</p>
-								<span class="glyphicon glyphicon-thumbs-up"> {{image.likes.count}}</span>
-								<span class="glyphicon glyphicon-pencil pull-right"> {{image.comments.count}}</span>
-							</div>
 
-						</div>
+    <div class="col-md-10" ng-show="isLayout('getRecentMedia')">
 
-					</div>
+            <div class="col-md-3" ng-repeat="image in images | unique:'id'">
 
-				</div>
+                <div class="thumbnail">
+
+                    <a class="thumbnail" ng-href="#media/{{image.id}}/{{image.type}}"
+                       ga-track-event="['Media', image.id]">
+                        <img ng-src="{{image.images.thumbnail.url}}">
+                    </a>
+
+                    <div class="caption">
+                        <p class="text-center">{{image.created_time * 1000 | date:'MMM d, y HH:mm:ss'}}</p>
+                        <span class="glyphicon glyphicon-thumbs-up"> {{image.likes.count}}</span>
+                        <span class="glyphicon glyphicon-pencil pull-right"> {{image.comments.count}}</span>
+                    </div>
+
+                </div>
 
             </div>
-			
-			<div class="col-md-10" ng-show="!isLayout('getRecentMedia')">
+
+    </div>
+
+
+    <div class="col-md-10" ng-show="!isLayout('getRecentMedia')">
 
         <div class="row container-fluid">
 
@@ -64,9 +92,10 @@
 
     </div>
 
-        <load-more />
+    <div error></div>
+    <div load-more></div>
 
-    </div>
+</div>
 
     <!--if user not logged in-->
     <div ng-show="!isLoggedIn()">
